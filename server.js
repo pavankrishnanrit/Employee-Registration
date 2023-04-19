@@ -27,7 +27,7 @@ app.post("/register", (req, res) => {
     dateJoin,
   } = req.body;
   db.query(
-    "INSERT INTO register(ename,email,mobile,gender,qualification,currentExperience,pastExperience,dateJoin) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
+    "INSERT INTO employee(ename,email,mobile,gender,qualification,currentExperience,pastExperience,dateJoin) VALUES(?, ?, ?, ?, ?, ?, ?, ?)",
     [
       ename,
       email,
@@ -50,7 +50,7 @@ app.post("/register", (req, res) => {
 
 app.get("/details/:id", (req, res) => {
   const { id } = req.params;
-  db.query("SELECT * FROM register where id=?", [id], (error, result) => {
+  db.query("SELECT * FROM employee where id=?", [id], (error, result) => {
     if (!error) {
       res.render("details", { result: result[0] });
     } else {
